@@ -8,7 +8,10 @@
     "server:serve": "nx serve server",
     "webapp:lint":"nx lint webapp",
     "webapp:serve":"nx serve webapp",
-    "postinstall": "ngcc --properties es2015 browser module main"
+    "postinstall": "ngcc --properties es2015 browser module main",
+  "build": "npx nx build server",
+  "start": "node dist/packages/server/main.js"
+
   },
   "private": true,
   "devDependencies": {
