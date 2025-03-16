@@ -1,0 +1,45 @@
+
+<div  class="side-bar">
+  <div *ngFor="let user of avtiveUsers;">
+ 
+   <p *ngIf="user.id === currntUser.id"  class="current-User" >{{user.name}}&nbsp;#{{user.id}}</p> 
+   <p *ngIf="user.id !== currntUser.id" class="active-Users" >{{user.name}}&nbsp;#{{user.id}}</p> 
+  </div>
+
+</div>
+<div class="login-state"[ngSwitch]="currntUser === null">
+    <ng-container *ngSwitchCase="true">
+          <mat-form-field >
+    <mat-label>Enter Your Name </mat-label>
+    <input matInput #userName placeholder="Placeholder">
+    <mat-hint>Ex:Diago</mat-hint>
+  </mat-form-field>
+<button mat-raised-button (click)="connect(userName)" color="primary">Connect</button> 
+    </ng-container>
+       <ng-container *ngSwitchCase="false">
+        <div class="userdata" >
+         <h1>name:{{currntUser.name}}</h1> 
+<p>Number:{{currntUser.id}}</p>
+</div>
+       </ng-container>
+</div>
+
+<div class="chat-area">
+<mat-card [class.user-chat]="message.event === 'user-chat'"  *ngFor="let message of messages">
+  
+    <h3>{{message.authoer.name}}&nbsp;#{{message.authoer.id}}</h3>
+    <p>{{message["contents"]}}</p>
+
+</mat-card>
+<div class="chat-input">
+  <mat-form-field appearance="outline">
+    <mat-label>Send Your message</mat-label>
+    <input #inpfield matInput (keyup.enter)="send(inpfield)" placeholder="What is In Your Mind ">
+</mat-form-field>
+</div>
+<div *ngFor="let not of notarr" class="notif">
+  <p>system</p>
+  <h1>{{not.contents}}</h1>
+
+</div>
+</div>
